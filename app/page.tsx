@@ -102,11 +102,15 @@ export default function Home() {
               Bridging the gap between vision and reality.
             </p>
             <div className="flex gap-4">
-              <Button variant="outline" size="icon" className="rounded-full">
-                <Github className="w-4 h-4" />
+              <Button variant="outline" size="icon" className="rounded-full" asChild>
+                <a href="https://github.com/bryaninjapan" target="_blank" rel="noopener noreferrer">
+                  <Github className="w-4 h-4" />
+                </a>
               </Button>
-              <Button variant="outline" size="icon" className="rounded-full">
-                <Linkedin className="w-4 h-4" />
+              <Button variant="outline" size="icon" className="rounded-full" asChild>
+                <a href="https://www.linkedin.com/in/boon-kie-goh-11941296/" target="_blank" rel="noopener noreferrer">
+                  <Linkedin className="w-4 h-4" />
+                </a>
               </Button>
               <Button variant="outline" size="icon" className="rounded-full">
                 <Twitter className="w-4 h-4" />
@@ -145,29 +149,20 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* English Editor Project (Large) */}
-            <motion.a
-              href="https://bryaninjapan.github.io/englisheditor/"
-              target="_blank"
-              rel="noopener noreferrer"
+            {/* Career Highlight (Large) */}
+            <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="md:col-span-2 bg-zinc-900 dark:bg-white text-zinc-50 dark:text-zinc-900 p-8 rounded-3xl flex flex-col justify-center relative overflow-hidden group cursor-pointer hover:scale-[1.01] transition-transform duration-300"
+              className="md:col-span-2 bg-zinc-900 dark:bg-white text-zinc-50 dark:text-zinc-900 p-8 rounded-3xl flex flex-col justify-center relative overflow-hidden group"
             >
               <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
                 <ArrowUpRight className="w-32 h-32" />
               </div>
-              <div className="flex justify-between items-start mb-2">
-                <div>
-                  <h3 className="text-2xl font-bold mb-2">English Editor</h3>
-                  <p className="opacity-80 max-w-md mb-4">通过导入各种LLM模型来校对英文文本</p>
-                  <p className="text-sm opacity-60">Professional English editing tool powered by multiple LLM models (Gemini, GPT-4o, etc.)</p>
-                </div>
-                <ArrowUpRight className="w-6 h-6 opacity-70 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform shrink-0 ml-4" />
-              </div>
-            </motion.a>
+              <h3 className="text-2xl font-bold mb-2">Senior Executive, Fortune 500</h3>
+              <p className="opacity-80 max-w-md">Led strategic initiatives resulting in $2B+ revenue growth and market expansion across 15 countries (2015-2020).</p>
+            </motion.div>
 
             {/* Stat 2 */}
             <motion.div 
@@ -301,24 +296,25 @@ export default function Home() {
           <div className="space-y-32">
             {[
               {
+                title: "English Editor",
+                status: "Live",
+                desc: "通过导入各种LLM模型来校对英文文本。Professional English editing tool powered by multiple LLM models (Gemini 3 Pro, GPT-4o, etc.)",
+                color: "bg-indigo-500",
+                number: "01",
+                link: "https://bryaninjapan.github.io/englisheditor/"
+              },
+              {
                 title: "AI-Powered Investment Platform",
                 status: "Active",
                 desc: "Building next-generation investment tools using machine learning to identify market inefficiencies.",
                 color: "bg-emerald-500",
-                number: "01"
+                number: "02"
               },
               {
                 title: "Climate Tech Fund",
                 status: "Funding",
                 desc: "Launching a $500M fund focused on sustainable technology, energy storage, and carbon capture.",
                 color: "bg-blue-500",
-                number: "02"
-              },
-              {
-                title: "Strategic Advisory Network",
-                status: "Seeking Partners",
-                desc: "Creating an exclusive network of experienced executives to advise high-growth companies.",
-                color: "bg-violet-500",
                 number: "03"
               }
             ].map((project, index) => (
@@ -352,9 +348,17 @@ export default function Home() {
                   <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8 leading-relaxed">
                     {project.desc}
                   </p>
-                  <Button variant="link" className="p-0 text-lg font-medium hover:no-underline group/btn">
-                    Learn more <ArrowUpRight className="w-5 h-5 ml-2 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
-                  </Button>
+                  {project.link ? (
+                    <Button variant="link" className="p-0 text-lg font-medium hover:no-underline group/btn" asChild>
+                      <a href={project.link} target="_blank" rel="noopener noreferrer">
+                        Visit project <ArrowUpRight className="w-5 h-5 ml-2 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+                      </a>
+                    </Button>
+                  ) : (
+                    <Button variant="link" className="p-0 text-lg font-medium hover:no-underline group/btn">
+                      Learn more <ArrowUpRight className="w-5 h-5 ml-2 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+                    </Button>
+                  )}
                 </div>
               </motion.div>
             ))}
