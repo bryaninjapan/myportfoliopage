@@ -1,10 +1,12 @@
 import type { NextConfig } from "next";
 
+const isProd = process.env.NODE_ENV === "production";
+
 const nextConfig: NextConfig = {
-  output: "export", // 启用静态导出
-  basePath: "/myportfoliopage", // 仓库名称
+  output: "export",
+  basePath: isProd ? "/myportfoliopage" : "",
   images: {
-    unoptimized: true, // GitHub Pages 不支持 Next.js 图片优化
+    unoptimized: true,
   },
 };
 

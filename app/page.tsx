@@ -145,20 +145,29 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Career Highlight (Large) */}
-            <motion.div 
+            {/* English Editor Project (Large) */}
+            <motion.a
+              href="https://bryaninjapan.github.io/englisheditor/"
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="md:col-span-2 bg-zinc-900 dark:bg-white text-zinc-50 dark:text-zinc-900 p-8 rounded-3xl flex flex-col justify-center relative overflow-hidden group"
+              className="md:col-span-2 bg-zinc-900 dark:bg-white text-zinc-50 dark:text-zinc-900 p-8 rounded-3xl flex flex-col justify-center relative overflow-hidden group cursor-pointer hover:scale-[1.01] transition-transform duration-300"
             >
               <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
                 <ArrowUpRight className="w-32 h-32" />
               </div>
-              <h3 className="text-2xl font-bold mb-2">Senior Executive, Fortune 500</h3>
-              <p className="opacity-80 max-w-md">Led strategic initiatives resulting in $2B+ revenue growth and market expansion across 15 countries (2015-2020).</p>
-            </motion.div>
+              <div className="flex justify-between items-start mb-2">
+                <div>
+                  <h3 className="text-2xl font-bold mb-2">English Editor</h3>
+                  <p className="opacity-80 max-w-md mb-4">通过导入各种LLM模型来校对英文文本</p>
+                  <p className="text-sm opacity-60">Professional English editing tool powered by multiple LLM models (Gemini, GPT-4o, etc.)</p>
+                </div>
+                <ArrowUpRight className="w-6 h-6 opacity-70 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform shrink-0 ml-4" />
+              </div>
+            </motion.a>
 
             {/* Stat 2 */}
             <motion.div 
@@ -168,10 +177,10 @@ export default function Home() {
               transition={{ delay: 0.2 }}
               className="bg-zinc-100 dark:bg-zinc-800 p-8 rounded-3xl flex flex-col justify-between"
             >
-              <span className="text-zinc-500 dark:text-zinc-400 text-sm font-medium">Exits</span>
+              <span className="text-zinc-500 dark:text-zinc-400 text-sm font-medium">Projects</span>
               <div>
-                <span className="text-6xl font-bold tracking-tighter">12</span>
-                <span className="text-xl ml-2 text-zinc-400">Succesful</span>
+                <span className="text-6xl font-bold tracking-tighter">15+</span>
+                <span className="text-xl ml-2 text-zinc-400">Built</span>
               </div>
             </motion.div>
 
@@ -183,10 +192,10 @@ export default function Home() {
               transition={{ delay: 0.3 }}
               className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 rounded-3xl flex flex-col justify-between"
             >
-              <span className="text-zinc-500 dark:text-zinc-400 text-sm font-medium">Avg Return</span>
+              <span className="text-zinc-500 dark:text-zinc-400 text-sm font-medium">LLM Models</span>
               <div>
-                <span className="text-6xl font-bold tracking-tighter">45%</span>
-                <span className="text-xl ml-2 text-zinc-400">Annually</span>
+                <span className="text-6xl font-bold tracking-tighter">8+</span>
+                <span className="text-xl ml-2 text-zinc-400">Integrated</span>
               </div>
             </motion.div>
 
