@@ -190,17 +190,33 @@ export default function Home() {
               </div>
             </motion.div>
 
-             {/* Investment Highlight */}
-             <motion.div 
+             {/* BitQuant Project */}
+             <motion.a
+              href="https://bryaninjapan.github.io/Bitquant/"
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
-              className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 rounded-3xl flex flex-col justify-center"
+              className="bg-zinc-900 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-900 border border-zinc-900 dark:border-zinc-50 p-8 rounded-3xl flex flex-col justify-between group cursor-pointer hover:scale-[1.02] transition-transform duration-300"
             >
-              <h3 className="text-xl font-bold mb-2">Healthcare Exit</h3>
-              <p className="text-zinc-500 text-sm">Series B to $450M acquisition (18x return).</p>
-            </motion.div>
+              <div>
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="text-xl font-bold">BitQuant AI</h3>
+                  <ArrowUpRight className="w-5 h-5 opacity-70 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                </div>
+                <p className="text-zinc-400 dark:text-zinc-600 text-sm mb-4">Risk assessment model for day traders.</p>
+              </div>
+              <div>
+                <Badge variant="outline" className="mb-3 border-zinc-700 text-zinc-400 dark:border-zinc-300 dark:text-zinc-600 font-normal">
+                  Live Tool
+                </Badge>
+                <p className="text-[10px] text-zinc-500 dark:text-zinc-400 leading-tight">
+                  *Disclaimer: This tool is for informational purposes only and does not constitute financial advice.
+                </p>
+              </div>
+            </motion.a>
           </div>
         </section>
 
