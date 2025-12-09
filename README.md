@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Personal Portfolio Website
+
+A minimalist, modern single-page portfolio website built with Next.js (App Router), Tailwind CSS, Framer Motion, and Shadcn/ui.
+
+## Features
+
+- **Three Main Sections:**
+  - **What Have I Done (我做了什么)**: Career milestones and investment achievements in a two-column layout with metric cards
+  - **What Did I Think (我想了什么)**: Long-form philosophical content with editorial typography and callout boxes
+  - **What Am I Working On (我正在做什么)**: Current projects showcased in engaging cards with status badges
+
+- **Sticky Navigation**: Smooth scrolling navigation with active section highlighting
+- **Responsive Design**: Fully responsive across all device sizes
+- **Animations**: Smooth Framer Motion animations for enhanced user experience
+- **Modern UI**: Clean, professional design using Shadcn/ui components
+
+## Tech Stack
+
+- **Next.js 16** (App Router)
+- **TypeScript**
+- **Tailwind CSS**
+- **Framer Motion** (animations)
+- **Shadcn/ui** (UI components)
+- **Radix UI** (underlying primitives)
 
 ## Getting Started
 
-First, run the development server:
+### Installation
+
+```bash
+npm install
+```
+
+### Development
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a production build:
 
-## Learn More
+```bash
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Start Production Server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+```
+├── app/
+│   ├── layout.tsx          # Root layout with fonts and metadata
+│   ├── page.tsx            # Main portfolio page
+│   └── globals.css         # Global styles and Tailwind config
+├── components/
+│   └── ui/                 # Shadcn/ui components
+│       ├── tabs.tsx
+│       ├── card.tsx
+│       ├── badge.tsx
+│       └── button.tsx
+└── lib/
+    └── utils.ts            # Utility functions
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Customization
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Content
+
+Edit `app/page.tsx` to update:
+- Career milestones and investment achievements
+- Philosophical content and quotes
+- Current projects and their descriptions
+
+### Styling
+
+- Global styles: `app/globals.css`
+- Component styles: Tailwind classes in components
+- Theme customization: Update CSS variables in `globals.css`
+
+### Fonts
+
+The project uses:
+- **Geist Sans**: Primary font (clean, modern)
+- **Playfair Display**: Editorial serif font for the "What Did I Think" section
+
+Fonts can be customized in `app/layout.tsx`.
+
+## License
+
+MIT
