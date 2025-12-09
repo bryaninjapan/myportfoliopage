@@ -94,12 +94,12 @@ export default function Home() {
             className="max-w-2xl"
           >
             <h1 className="text-4xl sm:text-6xl font-bold tracking-tight mb-8 leading-[1.1]">
-              Crafting value through <br className="hidden sm:block" />
-              <span className="text-zinc-500 dark:text-zinc-500">time, capital & strategy.</span>
+              Building tools for <br className="hidden sm:block" />
+              <span className="text-zinc-500 dark:text-zinc-500">legal & trading.</span>
             </h1>
             <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed mb-8 max-w-lg">
-              30 years of navigating markets, building companies, and compounding wisdom. 
-              Bridging the gap between vision and reality.
+              Developer and investor focused on legal tech and trading tools. 
+              4-5 years of experience building AI-powered solutions and exploring market patterns.
             </p>
             <div className="flex gap-4">
               <Button variant="outline" size="icon" className="rounded-full" asChild>
@@ -144,7 +144,7 @@ export default function Home() {
             >
               <span className="text-zinc-500 dark:text-zinc-400 text-sm font-medium">Experience</span>
               <div>
-                <span className="text-6xl font-bold tracking-tighter">30+</span>
+                <span className="text-6xl font-bold tracking-tighter">4-5</span>
                 <span className="text-xl ml-2 text-zinc-400">Years</span>
               </div>
             </motion.div>
@@ -160,8 +160,8 @@ export default function Home() {
               <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
                 <ArrowUpRight className="w-32 h-32" />
               </div>
-              <h3 className="text-2xl font-bold mb-2">Senior Executive, Fortune 500</h3>
-              <p className="opacity-80 max-w-md">Led strategic initiatives resulting in $2B+ revenue growth and market expansion across 15 countries (2015-2020).</p>
+              <h3 className="text-2xl font-bold mb-2">Legal Tech & Trading Tools</h3>
+              <p className="opacity-80 max-w-md">Built AI-powered tools for legal professionals and day traders. Focused on practical solutions that solve real problems.</p>
             </motion.div>
 
             {/* Stat 2 */}
@@ -241,10 +241,10 @@ export default function Home() {
               <div className="sticky top-32">
                 <span className="text-9xl font-serif text-zinc-100 dark:text-zinc-900 absolute -top-10 -left-10 -z-10 select-none">“</span>
                 <h3 className="text-3xl font-serif leading-tight mb-6">
-                  The most valuable asset isn't capital. It's judgment.
+                  The best tools solve real problems for real people.
                 </h3>
                 <p className="text-zinc-500 dark:text-zinc-400 text-sm">
-                  Reflections on 30 years of risk, reward, and the invisible forces that move markets.
+                  Thoughts on building practical solutions in legal tech and trading, based on 4-5 years of hands-on experience.
                 </p>
               </div>
             </div>
@@ -252,29 +252,28 @@ export default function Home() {
             <div className="lg:col-span-8">
               <article className="prose prose-lg dark:prose-invert prose-zinc max-w-none">
                 <p className="lead text-xl text-zinc-600 dark:text-zinc-300">
-                  Over three decades, I've learned that <strong className="text-zinc-900 dark:text-zinc-50">compounding is the most powerful force in wealth creation</strong>. 
-                  But it's not just about money—it's about knowledge, relationships, and strategic positioning.
+                  Over the past few years, I've learned that <strong className="text-zinc-900 dark:text-zinc-50">building tools that solve real problems is more valuable than chasing trends</strong>. 
+                  Whether it's legal tech or trading tools, the focus should be on practical value.
                 </p>
                 <p>
-                  Each successful investment taught me something that made the next one better. Each relationship 
-                  opened doors that led to opportunities I couldn't have predicted. The question isn't whether 
-                  you're compounding, but whether you're compounding in the right direction.
+                  Each project I've built taught me something new. Working in legal and trading domains showed me 
+                  how AI can augment human expertise rather than replace it. The key is understanding the domain 
+                  deeply before building solutions.
                 </p>
                 
                 <blockquote className="border-l-2 border-zinc-900 dark:border-zinc-50 pl-6 italic text-2xl font-serif my-12 text-zinc-800 dark:text-zinc-200 bg-zinc-50 dark:bg-zinc-900 py-4 pr-4">
-                  "The best investments aren't the ones with no risk. They're the ones where the risk is misunderstood 
-                  by the market."
+                  "The best tools aren't the most complex ones. They're the ones that solve a specific problem 
+                  really well for people who need it."
                 </blockquote>
 
-                <h4 className="font-sans text-lg font-bold uppercase tracking-wide mt-12 mb-4">Strategic Patience</h4>
+                <h4 className="font-sans text-lg font-bold uppercase tracking-wide mt-12 mb-4">Domain Knowledge First</h4>
                 <p>
-                  In a world of instant gratification, strategic patience is a competitive advantage. 
-                  The best deals I've made were ones I waited for. The best investments were ones I researched for months 
-                  before committing capital.
+                  Before building tools for legal or trading, I spend time understanding the domain. 
+                  The best solutions come from understanding the problems deeply, not from applying technology blindly.
                 </p>
                 <p>
-                   True risk management isn't about avoiding risk—it's about understanding it deeply and 
-                   positioning yourself to capture asymmetric upside while limiting downside.
+                  For trading tools, risk assessment is crucial. For legal tools, accuracy and reliability matter most. 
+                  Each domain has its own requirements that can't be ignored.
                 </p>
               </article>
             </div>
@@ -304,16 +303,16 @@ export default function Home() {
                 link: "https://bryaninjapan.github.io/englisheditor/"
               },
               {
-                title: "AI-Powered Investment Platform",
-                status: "Active",
-                desc: "Building next-generation investment tools using machine learning to identify market inefficiencies.",
+                title: "Legal Tech Tools",
+                status: "Exploring",
+                desc: "Exploring how AI can help legal professionals with document analysis and research. Early stage personal project.",
                 color: "bg-emerald-500",
                 number: "02"
               },
               {
-                title: "Climate Tech Fund",
-                status: "Funding",
-                desc: "Launching a $500M fund focused on sustainable technology, energy storage, and carbon capture.",
+                title: "Trading Risk Models",
+                status: "Learning",
+                desc: "Deepening my understanding of risk assessment for day trading. Building tools to help traders make better decisions.",
                 color: "bg-blue-500",
                 number: "03"
               }
