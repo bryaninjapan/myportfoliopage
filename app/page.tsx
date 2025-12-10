@@ -221,6 +221,59 @@ export default function Home() {
                 </p>
               </div>
             </motion.a>
+
+            {/* English Editor Project */}
+            <motion.a
+              href="https://bryaninjapan.github.io/englisheditor/"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+              className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 rounded-3xl flex flex-col justify-between group cursor-pointer hover:scale-[1.02] transition-transform duration-300"
+            >
+              <div>
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="text-xl font-bold">English Editor</h3>
+                  <ArrowUpRight className="w-5 h-5 opacity-70 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                </div>
+                <p className="text-zinc-600 dark:text-zinc-400 text-sm mb-4">通过导入各种LLM模型来校对英文文本</p>
+              </div>
+              <div>
+                <Badge variant="outline" className="mb-3 border-zinc-300 text-zinc-600 dark:border-zinc-700 dark:text-zinc-400 font-normal">
+                  Live Tool
+                </Badge>
+                <p className="text-[10px] text-zinc-500 dark:text-zinc-400 leading-tight">
+                  Professional English editing tool powered by multiple LLM models (Gemini, GPT-4o, etc.)
+                </p>
+              </div>
+            </motion.a>
+
+            {/* JP Legal Translator Project */}
+            <motion.a
+              href="https://bryaninjapan.github.io/jp-translator/"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.6 }}
+              className="md:col-span-2 bg-zinc-100 dark:bg-zinc-800 p-8 rounded-3xl flex flex-col justify-between group cursor-pointer hover:scale-[1.01] transition-transform duration-300"
+            >
+              <div className="flex justify-between items-start mb-2">
+                <div>
+                  <h3 className="text-2xl font-bold mb-2">JP Legal Translator</h3>
+                  <p className="text-zinc-600 dark:text-zinc-400 max-w-md">Professional full-text interpretation tool for Japanese legal documents.</p>
+                </div>
+                <ArrowUpRight className="w-6 h-6 opacity-70 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform shrink-0 ml-4" />
+              </div>
+              <div>
+                <Badge variant="outline" className="border-zinc-400 text-zinc-700 dark:border-zinc-600 dark:text-zinc-300 font-normal">
+                  Live Tool
+                </Badge>
+              </div>
+            </motion.a>
           </div>
         </section>
 
@@ -295,26 +348,18 @@ export default function Home() {
           <div className="space-y-32">
             {[
               {
-                title: "English Editor",
-                status: "Live",
-                desc: "通过导入各种LLM模型来校对英文文本。Professional English editing tool powered by multiple LLM models (Gemini 3 Pro, GPT-4o, etc.)",
-                color: "bg-indigo-500",
-                number: "01",
-                link: "https://bryaninjapan.github.io/englisheditor/"
-              },
-              {
                 title: "Legal Tech Tools",
                 status: "Exploring",
                 desc: "Exploring how AI can help legal professionals with document analysis and research. Early stage personal project.",
                 color: "bg-emerald-500",
-                number: "02"
+                number: "01"
               },
               {
                 title: "Trading Risk Models",
                 status: "Learning",
                 desc: "Deepening my understanding of risk assessment for day trading. Building tools to help traders make better decisions.",
                 color: "bg-blue-500",
-                number: "03"
+                number: "02"
               }
             ].map((project, index) => (
               <motion.div 
