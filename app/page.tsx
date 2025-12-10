@@ -54,9 +54,9 @@ export default function Home() {
       <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
         <nav className="flex items-center gap-1 p-1.5 rounded-full bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl border border-zinc-200 dark:border-zinc-800 shadow-2xl shadow-zinc-200/50 dark:shadow-black/50">
           {[
-            { id: "done", label: "Done", sub: "做过" },
-            { id: "thought", label: "Think", sub: "想过" },
-            { id: "working", label: "Work", sub: "在做" },
+            { id: "done", label: "Done" },
+            { id: "thought", label: "Think" },
+            { id: "working", label: "Work" },
           ].map((item) => (
             <button
               key={item.id}
@@ -74,9 +74,8 @@ export default function Home() {
                   transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                 />
               )}
-              <span className="relative z-10 flex items-center gap-2">
+              <span className="relative z-10">
                 {item.label}
-                <span className={`text-[10px] opacity-60 ${activeSection === item.id ? "font-light" : ""}`}>{item.sub}</span>
               </span>
             </button>
           ))}
@@ -94,8 +93,7 @@ export default function Home() {
             className="max-w-2xl"
           >
             <h1 className="text-4xl sm:text-6xl font-bold tracking-tight mb-8 leading-[1.1]">
-              Building tools for <br className="hidden sm:block" />
-              <span className="text-zinc-500 dark:text-zinc-500">legal & trading.</span>
+              Building tools today for better tomorrow.
             </h1>
             <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed mb-8 max-w-lg">
               Developer and investor focused on legal tech and trading tools. 
@@ -193,7 +191,7 @@ export default function Home() {
                   <h3 className="text-xl font-bold">English Editor</h3>
                   <ArrowUpRight className="w-5 h-5 opacity-70 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </div>
-                <p className="text-zinc-600 dark:text-zinc-400 text-sm mb-4">通过导入各种LLM模型来校对英文文本</p>
+                <p className="text-zinc-600 dark:text-zinc-400 text-sm mb-4">Professional English editing tool powered by multiple LLM models.</p>
               </div>
               <div>
                 <Badge variant="outline" className="mb-3 border-zinc-300 text-zinc-600 dark:border-zinc-700 dark:text-zinc-400 font-normal">
