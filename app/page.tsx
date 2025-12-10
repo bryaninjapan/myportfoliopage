@@ -135,62 +135,17 @@ export default function Home() {
           </motion.h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[200px]">
-            {/* Stat 1 */}
+            {/* Stat: Projects */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 rounded-3xl flex flex-col justify-between hover:shadow-lg transition-shadow duration-300"
-            >
-              <span className="text-zinc-500 dark:text-zinc-400 text-sm font-medium">Experience</span>
-              <div>
-                <span className="text-6xl font-bold tracking-tighter">4-5</span>
-                <span className="text-xl ml-2 text-zinc-400">Years</span>
-              </div>
-            </motion.div>
-
-            {/* Career Highlight (Large) */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="md:col-span-2 bg-zinc-900 dark:bg-white text-zinc-50 dark:text-zinc-900 p-8 rounded-3xl flex flex-col justify-center relative overflow-hidden group"
-            >
-              <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
-                <ArrowUpRight className="w-32 h-32" />
-              </div>
-              <h3 className="text-2xl font-bold mb-2">Legal Tech & Trading Tools</h3>
-              <p className="opacity-80 max-w-md">Built AI-powered tools for legal professionals and day traders. Focused on practical solutions that solve real problems.</p>
-            </motion.div>
-
-            {/* Stat 2 */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
               className="bg-zinc-100 dark:bg-zinc-800 p-8 rounded-3xl flex flex-col justify-between"
             >
               <span className="text-zinc-500 dark:text-zinc-400 text-sm font-medium">Projects</span>
               <div>
-                <span className="text-6xl font-bold tracking-tighter">15+</span>
+                <span className="text-6xl font-bold tracking-tighter">4</span>
                 <span className="text-xl ml-2 text-zinc-400">Built</span>
-              </div>
-            </motion.div>
-
-            {/* Stat 3 */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 rounded-3xl flex flex-col justify-between"
-            >
-              <span className="text-zinc-500 dark:text-zinc-400 text-sm font-medium">LLM Models</span>
-              <div>
-                <span className="text-6xl font-bold tracking-tighter">8+</span>
-                <span className="text-xl ml-2 text-zinc-400">Integrated</span>
               </div>
             </motion.div>
 
@@ -202,7 +157,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
+              transition={{ delay: 0.3 }}
               className="bg-zinc-900 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-900 border border-zinc-900 dark:border-zinc-50 p-8 rounded-3xl flex flex-col justify-between group cursor-pointer hover:scale-[1.02] transition-transform duration-300"
             >
               <div>
@@ -230,7 +185,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.5 }}
+              transition={{ delay: 0.4 }}
               className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 rounded-3xl flex flex-col justify-between group cursor-pointer hover:scale-[1.02] transition-transform duration-300"
             >
               <div>
@@ -258,18 +213,18 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.6 }}
-              className="md:col-span-2 bg-zinc-100 dark:bg-zinc-800 p-8 rounded-3xl flex flex-col justify-between group cursor-pointer hover:scale-[1.01] transition-transform duration-300"
+              transition={{ delay: 0.2 }}
+              className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 rounded-3xl flex flex-col justify-between group cursor-pointer hover:scale-[1.02] transition-transform duration-300"
             >
-              <div className="flex justify-between items-start mb-2">
-                <div>
-                  <h3 className="text-2xl font-bold mb-2">JP Legal Translator</h3>
-                  <p className="text-zinc-600 dark:text-zinc-400 max-w-md">Professional full-text interpretation tool for Japanese legal documents.</p>
+              <div>
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="text-xl font-bold">JP Legal Translator</h3>
+                  <ArrowUpRight className="w-5 h-5 opacity-70 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </div>
-                <ArrowUpRight className="w-6 h-6 opacity-70 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform shrink-0 ml-4" />
+                <p className="text-zinc-600 dark:text-zinc-400 text-sm mb-4">Professional full-text interpretation tool for Japanese legal documents.</p>
               </div>
               <div>
-                <Badge variant="outline" className="border-zinc-400 text-zinc-700 dark:border-zinc-600 dark:text-zinc-300 font-normal">
+                <Badge variant="outline" className="mb-3 border-zinc-300 text-zinc-600 dark:border-zinc-700 dark:text-zinc-400 font-normal">
                   Live Tool
                 </Badge>
               </div>
@@ -348,11 +303,12 @@ export default function Home() {
           <div className="space-y-32">
             {[
               {
-                title: "Legal Tech Tools",
-                status: "Exploring",
-                desc: "Exploring how AI can help legal professionals with document analysis and research. Early stage personal project.",
-                color: "bg-emerald-500",
-                number: "01"
+                title: "JP Legal Translator",
+                status: "Live",
+                desc: "Professional full-text interpretation tool for Japanese legal documents. Helping legal professionals translate and understand Japanese legal texts.",
+                color: "bg-indigo-500",
+                number: "01",
+                link: "https://bryaninjapan.github.io/jp-translator/"
               },
               {
                 title: "Trading Risk Models",
