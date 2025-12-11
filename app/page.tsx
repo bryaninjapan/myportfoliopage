@@ -142,7 +142,7 @@ export default function Home() {
             >
               <span className="text-zinc-500 dark:text-zinc-400 text-sm font-medium">Projects</span>
               <div>
-                <span className="text-6xl font-bold tracking-tighter">4</span>
+                <span className="text-6xl font-bold tracking-tighter">5</span>
                 <span className="text-xl ml-2 text-zinc-400">Built</span>
               </div>
             </motion.div>
@@ -223,6 +223,31 @@ export default function Home() {
               </div>
               <div>
                 <Badge variant="outline" className="mb-3 border-zinc-300 text-zinc-600 dark:border-zinc-700 dark:text-zinc-400 font-normal">
+                  Live Tool
+                </Badge>
+              </div>
+            </motion.a>
+
+            {/* EN Translator Project */}
+            <motion.a
+              href="https://bryaninjapan.github.io/professional-EN-CN-translator/"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+              className="bg-zinc-900 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-900 border border-zinc-900 dark:border-zinc-50 p-8 rounded-3xl flex flex-col justify-between group cursor-pointer hover:scale-[1.02] transition-transform duration-300"
+            >
+              <div>
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="text-xl font-bold">EN Translator</h3>
+                  <ArrowUpRight className="w-5 h-5 opacity-70 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                </div>
+                <p className="text-zinc-400 dark:text-zinc-600 text-sm mb-4">Professional English to Chinese translation tool for legal and business documents.</p>
+              </div>
+              <div>
+                <Badge variant="outline" className="mb-3 border-zinc-700 text-zinc-400 dark:border-zinc-300 dark:text-zinc-600 font-normal">
                   Live Tool
                 </Badge>
               </div>
@@ -314,6 +339,14 @@ export default function Home() {
                 desc: "Deepening my understanding of risk assessment for day trading. Building tools to help traders make better decisions.",
                 color: "bg-blue-500",
                 number: "02"
+              },
+              {
+                title: "EN Translator",
+                status: "Live",
+                desc: "Professional English to Chinese translation tool. Designed for legal and business professionals who need accurate, context-aware translations.",
+                color: "bg-purple-500",
+                number: "03",
+                link: "https://bryaninjapan.github.io/professional-EN-CN-translator/"
               }
             ].map((project, index) => (
               <motion.div 
