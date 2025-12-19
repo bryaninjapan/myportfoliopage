@@ -177,7 +177,7 @@ export default function Home() {
 
             {/* English Editor Project */}
             <motion.a
-              href="https://bryaninjapan.github.io/englisheditor/"
+              href="https://main.englisheditor.pages.dev"
               target="_blank"
               rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
@@ -230,7 +230,7 @@ export default function Home() {
 
             {/* EN Translator Project */}
             <motion.a
-              href="https://bryaninjapan.github.io/professional-EN-CN-translator/"
+              href="https://en-translator.pages.dev"
               target="_blank"
               rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
@@ -346,7 +346,7 @@ export default function Home() {
                 desc: "Professional English to Chinese translation tool. Designed for legal and business professionals who need accurate, context-aware translations.",
                 color: "bg-purple-500",
                 number: "03",
-                link: "https://bryaninjapan.github.io/professional-EN-CN-translator/"
+                link: "https://en-translator.pages.dev"
               }
             ].map((project, index) => (
               <motion.div 
