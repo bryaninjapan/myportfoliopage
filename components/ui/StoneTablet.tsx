@@ -17,30 +17,34 @@ export function StoneTablet({ project, language, theme }: StoneTabletProps) {
     window.open(project.link, "_blank", "noopener,noreferrer");
   };
 
-  // Enhanced stone colors with more depth
+  // Rough stone colors - darker grey for authentic stone look
   const stoneColor = theme === "dark" 
-    ? "linear-gradient(145deg, #4a4a4a 0%, #3a3a3a 30%, #2a2a2a 60%, #1a1a1a 100%)"
-    : "linear-gradient(145deg, #d0d0d0 0%, #b8b8b8 30%, #a0a0a0 60%, #888888 100%)";
+    ? "linear-gradient(145deg, #3a3a3a 0%, #2d2d2d 25%, #252525 50%, #1f1f1f 75%, #1a1a1a 100%)"
+    : "linear-gradient(145deg, #9a9a9a 0%, #8a8a8a 25%, #7a7a7a 50%, #6a6a6a 75%, #5a5a5a 100%)";
   
-  const stoneBorder = theme === "dark" ? "#666" : "#aaa";
-  const textColor = theme === "dark" ? "#e8e8e8" : "#0a0a0a";
-  const engravedColor = theme === "dark" ? "rgba(150, 150, 150, 0.4)" : "rgba(0, 0, 0, 0.5)";
+  const stoneBorder = theme === "dark" ? "#2a2a2a" : "#555";
+  const textColor = theme === "dark" ? "#2a2a2a" : "#1a1a1a"; // Dark engraved text
+  const engravedColor = theme === "dark" ? "#1a1a1a" : "#0a0a0a"; // Deep carved look
   
-  // Enhanced 3D shadow
+  // Enhanced 3D shadow for irregular stone
   const shadowColor = theme === "dark" 
-    ? "0 12px 40px rgba(0, 0, 0, 0.8), 0 6px 20px rgba(0, 0, 0, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.1)" 
-    : "0 12px 40px rgba(0, 0, 0, 0.4), 0 6px 20px rgba(0, 0, 0, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.3)";
+    ? "0 15px 50px rgba(0, 0, 0, 0.9), 0 8px 25px rgba(0, 0, 0, 0.7), inset 0 2px 4px rgba(255, 255, 255, 0.05)" 
+    : "0 15px 50px rgba(0, 0, 0, 0.5), 0 8px 25px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.2)";
   
+  // Blue/cyan glow effect (like the runestone image)
   const hoverShadowColor = theme === "dark"
-    ? "0 20px 60px rgba(0, 0, 0, 0.9), 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 30px rgba(200, 150, 100, 0.3)"
-    : "0 20px 60px rgba(0, 0, 0, 0.5), 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 30px rgba(200, 150, 100, 0.4)";
+    ? "0 25px 70px rgba(0, 0, 0, 0.95), 0 12px 35px rgba(0, 0, 0, 0.8), 0 0 40px rgba(64, 224, 255, 0.5), 0 0 60px rgba(64, 224, 255, 0.3)"
+    : "0 25px 70px rgba(0, 0, 0, 0.6), 0 12px 35px rgba(0, 0, 0, 0.5), 0 0 40px rgba(64, 224, 255, 0.6), 0 0 60px rgba(64, 224, 255, 0.4)";
 
-  // Glowing text effect when hovered
+  // Blue/cyan glowing text effect when hovered (like the runestone)
   const textGlow = isHovered 
     ? theme === "dark"
-      ? "0 0 10px rgba(255, 220, 150, 0.8), 0 0 20px rgba(255, 200, 100, 0.6), 0 0 30px rgba(255, 180, 80, 0.4)"
-      : "0 0 10px rgba(200, 150, 80, 0.9), 0 0 20px rgba(180, 120, 60, 0.7), 0 0 30px rgba(160, 100, 40, 0.5)"
+      ? "0 0 8px rgba(100, 240, 255, 1), 0 0 16px rgba(64, 224, 255, 0.9), 0 0 24px rgba(64, 224, 255, 0.7), 0 0 32px rgba(0, 191, 255, 0.5)"
+      : "0 0 8px rgba(64, 224, 255, 1), 0 0 16px rgba(64, 224, 255, 0.9), 0 0 24px rgba(0, 191, 255, 0.8), 0 0 32px rgba(0, 191, 255, 0.6)"
     : "none";
+
+  // Irregular polygon clip-path for rough stone shape
+  const irregularShape = "polygon(0% 5%, 8% 0%, 25% 3%, 45% 0%, 62% 4%, 78% 1%, 92% 5%, 100% 10%, 98% 25%, 100% 40%, 97% 55%, 100% 70%, 98% 85%, 100% 95%, 92% 100%, 75% 98%, 58% 100%, 42% 97%, 25% 100%, 8% 98%, 0% 95%, 2% 80%, 0% 65%, 3% 50%, 0% 35%, 2% 20%)";
 
   return (
     <div
@@ -64,38 +68,47 @@ export function StoneTablet({ project, language, theme }: StoneTabletProps) {
           height: "380px",
           margin: "0 auto",
           background: stoneColor,
-          border: `4px solid ${stoneBorder}`,
-          borderRadius: "12px",
+          border: `5px solid ${stoneBorder}`,
+          borderRadius: "4px",
           padding: "2rem 1.5rem",
           display: "flex",
           flexDirection: "column",
           boxShadow: shadowColor,
-          // Enhanced stone texture effect
+          // Irregular rough stone shape
+          clipPath: irregularShape,
+          WebkitClipPath: irregularShape,
+          // Enhanced stone texture effect - rough, weathered
           backgroundImage: `
             ${stoneColor},
             repeating-linear-gradient(
               0deg,
-              rgba(0, 0, 0, 0.15) 0px,
+              rgba(0, 0, 0, 0.2) 0px,
               transparent 1px,
-              transparent 3px,
-              rgba(255, 255, 255, 0.08) 4px
+              transparent 2px,
+              rgba(255, 255, 255, 0.03) 3px,
+              transparent 4px,
+              rgba(0, 0, 0, 0.15) 5px
             ),
             repeating-linear-gradient(
               90deg,
-              rgba(0, 0, 0, 0.1) 0px,
+              rgba(0, 0, 0, 0.15) 0px,
               transparent 2px,
-              transparent 4px,
-              rgba(255, 255, 255, 0.05) 5px
-            )
+              transparent 3px,
+              rgba(255, 255, 255, 0.02) 4px,
+              transparent 5px,
+              rgba(0, 0, 0, 0.1) 6px
+            ),
+            radial-gradient(ellipse at 30% 20%, rgba(0, 0, 0, 0.3) 0%, transparent 50%),
+            radial-gradient(ellipse at 70% 80%, rgba(0, 0, 0, 0.25) 0%, transparent 50%)
           `,
           overflow: "hidden",
           // 3D perspective
           transform: isHovered ? "translateZ(20px)" : "translateZ(0px)",
-          transition: "transform 0.5s ease, filter 0.5s ease",
-          filter: isHovered ? "brightness(1.1)" : "brightness(1)"
+          transition: "transform 0.5s ease, filter 0.5s ease, clip-path 0.5s ease",
+          filter: isHovered ? "brightness(1.15) contrast(1.1)" : "brightness(1) contrast(1)"
         }}
       >
-        {/* Enhanced stone texture overlay with depth */}
+        {/* Enhanced stone texture overlay with depth and roughness */}
         <div
           style={{
             position: "absolute",
@@ -104,33 +117,33 @@ export function StoneTablet({ project, language, theme }: StoneTabletProps) {
             right: 0,
             bottom: 0,
             background: `
-              radial-gradient(ellipse at 25% 25%, rgba(255, 255, 255, 0.08) 0%, transparent 60%),
-              radial-gradient(ellipse at 75% 75%, rgba(0, 0, 0, 0.15) 0%, transparent 60%),
-              linear-gradient(135deg, transparent 0%, rgba(0, 0, 0, 0.05) 50%, transparent 100%)
+              radial-gradient(ellipse at 20% 25%, rgba(0, 0, 0, 0.2) 0%, transparent 40%),
+              radial-gradient(ellipse at 80% 75%, rgba(0, 0, 0, 0.25) 0%, transparent 50%),
+              linear-gradient(135deg, rgba(0, 0, 0, 0.1) 0%, transparent 30%, rgba(0, 0, 0, 0.1) 70%, transparent 100%),
+              linear-gradient(45deg, transparent 0%, rgba(255, 255, 255, 0.02) 50%, transparent 100%)
             `,
             pointerEvents: "none",
             zIndex: 1
           }}
         />
 
-        {/* 3D border inset effect */}
+        {/* Rough stone edge highlight */}
         <div
           style={{
             position: "absolute",
-            top: "12px",
-            left: "12px",
-            right: "12px",
-            bottom: "12px",
-            border: `2px solid ${engravedColor}`,
-            borderRadius: "6px",
+            top: "0",
+            left: "0",
+            right: "0",
+            height: "30%",
+            background: theme === "dark" 
+              ? "linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 0%, transparent 100%)"
+              : "linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, transparent 100%)",
             pointerEvents: "none",
-            opacity: 0.4,
-            boxShadow: "inset 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 -2px 4px rgba(255, 255, 255, 0.1)",
             zIndex: 2
           }}
         />
 
-        {/* Carved title with rune-style font and glow */}
+        {/* Carved title with modern font and blue glow */}
         <div
           style={{
             textAlign: "center",
@@ -144,25 +157,25 @@ export function StoneTablet({ project, language, theme }: StoneTabletProps) {
           <h3
             style={{
               fontSize: "1.6rem",
-              fontWeight: "600",
-              color: textColor,
-              fontFamily: "var(--font-rune), var(--font-cinzel), serif",
-              letterSpacing: "0.15em",
+              fontWeight: "700",
+              fontFamily: "var(--font-cinzel), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+              letterSpacing: "0.05em",
               textShadow: `
-                3px 3px 0px ${theme === "dark" ? "rgba(0, 0, 0, 0.6)" : "rgba(255, 255, 255, 0.6)"},
-                2px 2px 0px ${engravedColor},
+                2px 2px 0px ${theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.3)"},
+                1px 1px 2px ${engravedColor},
                 ${textGlow}
               `,
               margin: 0,
-              transition: "text-shadow 0.5s ease, transform 0.5s ease",
-              transform: isHovered ? "scale(1.05)" : "scale(1)"
+              transition: "text-shadow 0.5s ease, transform 0.5s ease, color 0.5s ease",
+              transform: isHovered ? "scale(1.05)" : "scale(1)",
+              color: isHovered ? (theme === "dark" ? "#6ef" : "#08f") : textColor
             }}
           >
             {project.name[language]}
           </h3>
         </div>
 
-        {/* Carved year with glow */}
+        {/* Carved year with blue glow */}
         <div
           style={{
             textAlign: "center",
@@ -174,12 +187,12 @@ export function StoneTablet({ project, language, theme }: StoneTabletProps) {
           <span
             style={{
               fontSize: "1rem",
-              color: isHovered ? (theme === "dark" ? "#ffd4a0" : "#d4a060") : engravedColor,
-              fontFamily: "var(--font-rune), var(--font-medieval), serif",
-              letterSpacing: "0.3em",
-              fontWeight: "400",
+              color: isHovered ? (theme === "dark" ? "#6ef" : "#08f") : engravedColor,
+              fontFamily: "var(--font-cinzel), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+              letterSpacing: "0.2em",
+              fontWeight: "600",
               textShadow: `
-                2px 2px 0px ${theme === "dark" ? "rgba(0, 0, 0, 0.5)" : "rgba(255, 255, 255, 0.5)"},
+                1px 1px 1px ${theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.2)"},
                 ${textGlow}
               `,
               transition: "color 0.5s ease, text-shadow 0.5s ease"
@@ -189,7 +202,7 @@ export function StoneTablet({ project, language, theme }: StoneTabletProps) {
           </span>
         </div>
 
-        {/* Carved description with rune-style and glow */}
+        {/* Carved description with modern font and blue glow */}
         {project.description && (
           <div
             style={{
@@ -205,20 +218,21 @@ export function StoneTablet({ project, language, theme }: StoneTabletProps) {
           >
             <p
               style={{
-                fontSize: "1rem",
+                fontSize: "0.95rem",
                 lineHeight: "1.7",
-                color: isHovered ? (theme === "dark" ? "#f0e0c0" : "#2a1a0a") : textColor,
-                fontFamily: "var(--font-rune), var(--font-medieval), serif",
-                letterSpacing: "0.1em",
+                color: isHovered ? (theme === "dark" ? "#8ff" : "#06f") : textColor,
+                fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif",
+                letterSpacing: "0.03em",
                 textShadow: `
-                  2px 2px 0px ${theme === "dark" ? "rgba(0, 0, 0, 0.5)" : "rgba(255, 255, 255, 0.5)"},
-                  1px 1px 0px ${engravedColor},
+                  1px 1px 1px ${theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.2)"},
+                  0.5px 0.5px 1px ${engravedColor},
                   ${textGlow}
                 `,
                 margin: 0,
-                opacity: isHovered ? 1 : 0.85,
+                opacity: isHovered ? 1 : 0.9,
                 transition: "opacity 0.5s ease, color 0.5s ease, text-shadow 0.5s ease, transform 0.5s ease",
-                transform: isHovered ? "scale(1.03)" : "scale(1)"
+                transform: isHovered ? "scale(1.03)" : "scale(1)",
+                fontWeight: "400"
               }}
             >
               {project.description[language]}
@@ -226,7 +240,7 @@ export function StoneTablet({ project, language, theme }: StoneTabletProps) {
           </div>
         )}
 
-        {/* Enhanced inner glow when hovered */}
+        {/* Blue/cyan inner glow when hovered */}
         {isHovered && (
           <div
             style={{
@@ -236,24 +250,52 @@ export function StoneTablet({ project, language, theme }: StoneTabletProps) {
               right: 0,
               bottom: 0,
               background: theme === "dark"
-                ? "radial-gradient(ellipse at center, rgba(255, 200, 100, 0.15) 0%, transparent 70%)"
-                : "radial-gradient(ellipse at center, rgba(255, 220, 150, 0.2) 0%, transparent 70%)",
+                ? "radial-gradient(ellipse at center, rgba(64, 224, 255, 0.2) 0%, rgba(0, 191, 255, 0.1) 40%, transparent 70%)"
+                : "radial-gradient(ellipse at center, rgba(64, 224, 255, 0.25) 0%, rgba(0, 191, 255, 0.15) 40%, transparent 70%)",
               pointerEvents: "none",
-              borderRadius: "8px",
+              borderRadius: "4px",
               zIndex: 2,
-              animation: "pulse 2s ease-in-out infinite"
+              animation: "cyanPulse 2s ease-in-out infinite"
             }}
           />
         )}
+
+        {/* Carved line details for depth */}
+        <div
+          style={{
+            position: "absolute",
+            top: "15%",
+            left: "10%",
+            right: "10%",
+            height: "1px",
+            background: `linear-gradient(to right, transparent, ${engravedColor}, transparent)`,
+            opacity: 0.3,
+            pointerEvents: "none",
+            zIndex: 2
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            bottom: "20%",
+            left: "10%",
+            right: "10%",
+            height: "1px",
+            background: `linear-gradient(to right, transparent, ${engravedColor}, transparent)`,
+            opacity: 0.3,
+            pointerEvents: "none",
+            zIndex: 2
+          }}
+        />
       </div>
 
       <style jsx>{`
-        @keyframes pulse {
+        @keyframes cyanPulse {
           0%, 100% {
-            opacity: 0.6;
+            opacity: 0.7;
           }
           50% {
-            opacity: 0.9;
+            opacity: 1;
           }
         }
       `}</style>

@@ -71,7 +71,7 @@ export default function Home() {
           ? "bg-[#0a0a0a] text-[#f4f4f4]"
           : "bg-[#f4f4f4] text-[#1a1a1a]"
       }`}
-      style={{ fontFamily: "var(--font-medieval), var(--font-cinzel), serif" }}
+      style={{ fontFamily: "var(--font-cinzel), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}
     >
       {/* Header with controls */}
       <header className="sticky top-0 z-50 border-b backdrop-blur-sm bg-opacity-90"
