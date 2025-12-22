@@ -1,15 +1,22 @@
 import type { Metadata } from "next";
-import { Geist_Mono } from "next/font/google";
+import { Cinzel, IM_Fell_English } from "next/font/google";
 import "./globals.css";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const cinzel = Cinzel({
+  variable: "--font-cinzel",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const imFellEnglish = IM_Fell_English({
+  variable: "--font-medieval",
+  subsets: ["latin"],
+  weight: ["400"],
 });
 
 export const metadata: Metadata = {
   title: "Portfolio",
-  description: "Personal portfolio - Diskette collection",
+  description: "Personal portfolio - Stone tablet collection",
 };
 
 export default function RootLayout({
@@ -20,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistMono.variable} antialiased`}
+        className={`${cinzel.variable} ${imFellEnglish.variable} antialiased`}
       >
         {children}
       </body>

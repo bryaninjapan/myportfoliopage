@@ -18,7 +18,7 @@ export function LanguageToggle({ language, onToggle }: LanguageToggleProps) {
       aria-label="Toggle language"
     >
       <Languages className="w-4 h-4" />
-      <span className="text-xs font-mono">
+      <span className="text-xs" style={{ fontFamily: "var(--font-medieval), serif" }}>
         {language === "zh" ? "中文" : "English"}
       </span>
     </Button>

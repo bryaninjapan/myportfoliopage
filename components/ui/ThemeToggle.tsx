@@ -34,12 +34,12 @@ export function ThemeToggle({ theme, onToggle, language }: ThemeToggleProps) {
       {theme === "dark" ? (
         <>
           <Sun className="w-4 h-4" />
-          <span className="text-xs font-mono">{t.light}</span>
+          <span className="text-xs" style={{ fontFamily: "var(--font-medieval), serif" }}>{t.light}</span>
         </>
       ) : (
         <>
           <Moon className="w-4 h-4" />
-          <span className="text-xs font-mono">{t.dark}</span>
+          <span className="text-xs" style={{ fontFamily: "var(--font-medieval), serif" }}>{t.dark}</span>
         </>
       )}
     </Button>

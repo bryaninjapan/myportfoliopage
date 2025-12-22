@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Diskette } from "@/components/ui/Diskette";
+import { StoneTablet } from "@/components/ui/StoneTablet";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { LanguageToggle } from "@/components/ui/LanguageToggle";
 import { projects } from "@/lib/projects";
@@ -71,7 +71,7 @@ export default function Home() {
           ? "bg-[#0a0a0a] text-[#f4f4f4]"
           : "bg-[#f4f4f4] text-[#1a1a1a]"
       }`}
-      style={{ fontFamily: "'Courier New', 'Monaco', monospace" }}
+      style={{ fontFamily: "var(--font-medieval), var(--font-cinzel), serif" }}
     >
       {/* Header with controls */}
       <header className="sticky top-0 z-50 border-b backdrop-blur-sm bg-opacity-90"
@@ -81,7 +81,7 @@ export default function Home() {
         }}
       >
         <div className="max-w-1400px mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-widest letter-spacing-0.2em">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-widest letter-spacing-0.2em" style={{ fontFamily: "var(--font-cinzel), serif" }}>
             {t.siteTitle}
           </h1>
           
@@ -95,7 +95,7 @@ export default function Home() {
         <div className="max-w-1400px mx-auto px-6 pb-4 flex justify-center gap-2">
           <button
             onClick={() => setCategory("all")}
-            className={`px-4 py-2 rounded-full text-sm font-mono transition-all ${
+            className={`px-4 py-2 rounded-full text-sm transition-all ${
               category === "all"
                 ? theme === "dark"
                   ? "bg-[#f4f4f4] text-[#0a0a0a]"
@@ -104,12 +104,13 @@ export default function Home() {
                 ? "border border-[#444] text-[#888] hover:text-[#f4f4f4]"
                 : "border border-[#888] text-[#666] hover:text-[#1a1a1a]"
             }`}
+            style={{ fontFamily: "var(--font-medieval), serif" }}
           >
             {t.categories.all}
           </button>
           <button
             onClick={() => setCategory("tools")}
-            className={`px-4 py-2 rounded-full text-sm font-mono transition-all ${
+            className={`px-4 py-2 rounded-full text-sm transition-all ${
               category === "tools"
                 ? theme === "dark"
                   ? "bg-[#f4f4f4] text-[#0a0a0a]"
@@ -118,12 +119,13 @@ export default function Home() {
                 ? "border border-[#444] text-[#888] hover:text-[#f4f4f4]"
                 : "border border-[#888] text-[#666] hover:text-[#1a1a1a]"
             }`}
+            style={{ fontFamily: "var(--font-medieval), serif" }}
           >
             {t.categories.tools}
           </button>
           <button
             onClick={() => setCategory("archive")}
-            className={`px-4 py-2 rounded-full text-sm font-mono transition-all ${
+            className={`px-4 py-2 rounded-full text-sm transition-all ${
               category === "archive"
                 ? theme === "dark"
                   ? "bg-[#f4f4f4] text-[#0a0a0a]"
@@ -132,16 +134,17 @@ export default function Home() {
                 ? "border border-[#444] text-[#888] hover:text-[#f4f4f4]"
                 : "border border-[#888] text-[#666] hover:text-[#1a1a1a]"
             }`}
+            style={{ fontFamily: "var(--font-medieval), serif" }}
           >
             {t.categories.archive}
           </button>
         </div>
       </header>
 
-      {/* Main content - Diskette Gallery */}
+      {/* Main content - Stone Tablet Gallery */}
       <main className="container mx-auto px-6 py-12 min-h-[60vh]">
         <div
-          className={`diskette-gallery ${
+          className={`stone-tablet-gallery ${
             projectCount === 1
               ? "centered-1"
               : projectCount === 2
@@ -154,7 +157,7 @@ export default function Home() {
           }`}
           style={{
             // Adjust max-width for better spacing with few projects
-            maxWidth: projectCount <= 4 ? "900px" : "1400px",
+            maxWidth: projectCount <= 4 ? "1200px" : "1600px",
             // Add more vertical padding for few projects
             paddingTop: projectCount <= 4 ? "4rem" : "2rem",
             paddingBottom: projectCount <= 4 ? "4rem" : "2rem"
@@ -168,7 +171,7 @@ export default function Home() {
                 transition: "opacity 0.3s ease"
               }}
             >
-              <Diskette
+              <StoneTablet
                 project={project}
                 language={language}
                 theme={theme}
@@ -180,7 +183,7 @@ export default function Home() {
         {/* Empty state */}
         {filteredProjects.length === 0 && (
           <div className="text-center py-20">
-            <p className="text-lg opacity-60 font-mono">
+            <p className="text-lg opacity-60" style={{ fontFamily: "var(--font-medieval), serif" }}>
               {language === "zh" ? "暂无项目" : "No projects found"}
             </p>
           </div>
@@ -189,8 +192,9 @@ export default function Home() {
 
       {/* Footer */}
       <footer
-        className="py-8 text-center text-sm opacity-60 font-mono border-t"
+        className="py-8 text-center text-sm opacity-60 border-t"
         style={{
+          fontFamily: "var(--font-medieval), serif",
           borderColor: theme === "dark" ? "#333" : "#ddd"
         }}
       >
