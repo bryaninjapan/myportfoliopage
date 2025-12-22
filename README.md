@@ -1,27 +1,24 @@
 # Personal Portfolio Website
 
-A minimalist, modern single-page portfolio website built with Next.js (App Router), Tailwind CSS, Framer Motion, and Shadcn/ui.
+A minimalist portfolio website with a retro diskette (floppy disk) theme, built with Next.js (App Router), TypeScript, and Tailwind CSS. Each project is displayed as a 3.5" floppy disk with interactive animations.
 
 ## Features
 
-- **Three Main Sections:**
-  - **What Have I Done (我做了什么)**: Career milestones and investment achievements in a two-column layout with metric cards
-  - **What Did I Think (我想了什么)**: Long-form philosophical content with editorial typography and callout boxes
-  - **What Am I Working On (我正在做什么)**: Current projects showcased in engaging cards with status badges
-
-- **Sticky Navigation**: Smooth scrolling navigation with active section highlighting
+- **Diskette Theme**: Each project is displayed as a 3.5" floppy disk with realistic visual details
+- **Theme Toggle**: Switch between dark and light modes with preferences saved in localStorage
+- **Language Toggle**: Full Chinese/English support with synchronized text switching
+- **Scalable Layout**: Works beautifully with 4 projects or 20-30 projects
 - **Responsive Design**: Fully responsive across all device sizes
-- **Animations**: Smooth Framer Motion animations for enhanced user experience
-- **Modern UI**: Clean, professional design using Shadcn/ui components
+- **Easy Project Management**: Add or remove projects by editing a single data file
+- **Minimalist Design**: Clean, retro-inspired interface inspired by soniclab.cc
 
 ## Tech Stack
 
 - **Next.js 16** (App Router)
 - **TypeScript**
 - **Tailwind CSS**
-- **Framer Motion** (animations)
 - **Shadcn/ui** (UI components)
-- **Radix UI** (underlying primitives)
+- **GitHub Pages** (deployment)
 
 ## Getting Started
 
@@ -60,40 +57,49 @@ npm start
 ```
 ├── app/
 │   ├── layout.tsx          # Root layout with fonts and metadata
-│   ├── page.tsx            # Main portfolio page
+│   ├── page.tsx            # Main portfolio page with diskette gallery
 │   └── globals.css         # Global styles and Tailwind config
 ├── components/
-│   └── ui/                 # Shadcn/ui components
-│       ├── tabs.tsx
-│       ├── card.tsx
-│       ├── badge.tsx
-│       └── button.tsx
-└── lib/
-    └── utils.ts            # Utility functions
+│   └── ui/                 # UI components
+│       ├── Diskette.tsx    # 3.5" floppy disk component
+│       ├── ThemeToggle.tsx # Dark/light theme toggle
+│       ├── LanguageToggle.tsx # Language switcher
+│       └── button.tsx      # Button component
+├── lib/
+│   ├── projects.ts         # Project data (easy to add/remove projects)
+│   ├── translations.ts     # Internationalization strings
+│   └── utils.ts            # Utility functions
+└── .github/
+    └── workflows/
+        └── deploy-github-pages.yml # GitHub Pages deployment
 ```
 
 ## Customization
 
-### Content
+### Adding/Removing Projects
 
-Edit `app/page.tsx` to update:
-- Career milestones and investment achievements
-- Philosophical content and quotes
-- Current projects and their descriptions
+Edit `lib/projects.ts` to add or remove projects. See `PROJECTS_README.md` for detailed instructions.
+
+Each project requires:
+- `id`: Unique identifier
+- `name`: Object with `zh` (Chinese) and `en` (English) names
+- `link`: Project URL
+- `category`: Optional (e.g., "tools", "archive")
+- `year`: Optional year to display on diskette
 
 ### Styling
 
 - Global styles: `app/globals.css`
-- Component styles: Tailwind classes in components
-- Theme customization: Update CSS variables in `globals.css`
+- Theme colors: CSS variables automatically adjust for dark/light mode
+- Diskette appearance: Customize in `components/ui/Diskette.tsx`
 
-### Fonts
+### Internationalization
 
-The project uses:
-- **Geist Sans**: Primary font (clean, modern)
-- **Playfair Display**: Editorial serif font for the "What Did I Think" section
+Edit `lib/translations.ts` to update UI text in both Chinese and English.
 
-Fonts can be customized in `app/layout.tsx`.
+### Deployment
+
+The site is deployed to GitHub Pages. See `GITHUB_PAGES_SETUP.md` for deployment instructions.
 
 ## License
 
