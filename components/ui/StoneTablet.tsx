@@ -36,12 +36,12 @@ export function StoneTablet({ project, language, theme }: StoneTabletProps) {
     ? "0 25px 70px rgba(0, 0, 0, 0.95), 0 12px 35px rgba(0, 0, 0, 0.8), 0 0 40px rgba(64, 224, 255, 0.5), 0 0 60px rgba(64, 224, 255, 0.3)"
     : "0 25px 70px rgba(0, 0, 0, 0.6), 0 12px 35px rgba(0, 0, 0, 0.5), 0 0 40px rgba(64, 224, 255, 0.6), 0 0 60px rgba(64, 224, 255, 0.4)";
 
-  // Blue/cyan glowing text effect when hovered (like the runestone)
+  // Blue/cyan glowing text effect - ONLY when hovered
   const textGlow = isHovered 
     ? theme === "dark"
       ? "0 0 8px rgba(100, 240, 255, 1), 0 0 16px rgba(64, 224, 255, 0.9), 0 0 24px rgba(64, 224, 255, 0.7), 0 0 32px rgba(0, 191, 255, 0.5)"
       : "0 0 8px rgba(64, 224, 255, 1), 0 0 16px rgba(64, 224, 255, 0.9), 0 0 24px rgba(0, 191, 255, 0.8), 0 0 32px rgba(0, 191, 255, 0.6)"
-    : "none";
+    : "";
 
   // Irregular polygon clip-path for rough stone shape
   const irregularShape = "polygon(0% 5%, 8% 0%, 25% 3%, 45% 0%, 62% 4%, 78% 1%, 92% 5%, 100% 10%, 98% 25%, 100% 40%, 97% 55%, 100% 70%, 98% 85%, 100% 95%, 92% 100%, 75% 98%, 58% 100%, 42% 97%, 25% 100%, 8% 98%, 0% 95%, 2% 80%, 0% 65%, 3% 50%, 0% 35%, 2% 20%)";
@@ -160,11 +160,16 @@ export function StoneTablet({ project, language, theme }: StoneTabletProps) {
               fontWeight: "700",
               fontFamily: "var(--font-cinzel), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
               letterSpacing: "0.05em",
-              textShadow: `
-                2px 2px 0px ${theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.3)"},
-                1px 1px 2px ${engravedColor},
-                ${textGlow}
-              `,
+              textShadow: isHovered
+                ? `
+                    2px 2px 0px ${theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.3)"},
+                    1px 1px 2px ${engravedColor},
+                    ${textGlow}
+                  `
+                : `
+                    2px 2px 0px ${theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.3)"},
+                    1px 1px 2px ${engravedColor}
+                  `,
               margin: 0,
               transition: "text-shadow 0.5s ease, transform 0.5s ease, color 0.5s ease",
               transform: isHovered ? "scale(1.05)" : "scale(1)",
@@ -191,10 +196,14 @@ export function StoneTablet({ project, language, theme }: StoneTabletProps) {
               fontFamily: "var(--font-cinzel), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
               letterSpacing: "0.2em",
               fontWeight: "600",
-              textShadow: `
-                1px 1px 1px ${theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.2)"},
-                ${textGlow}
-              `,
+              textShadow: isHovered
+                ? `
+                    1px 1px 1px ${theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.2)"},
+                    ${textGlow}
+                  `
+                : `
+                    1px 1px 1px ${theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.2)"}
+                  `,
               transition: "color 0.5s ease, text-shadow 0.5s ease"
             }}
           >
@@ -223,11 +232,16 @@ export function StoneTablet({ project, language, theme }: StoneTabletProps) {
                 color: isHovered ? (theme === "dark" ? "#8ff" : "#06f") : textColor,
                 fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif",
                 letterSpacing: "0.03em",
-                textShadow: `
-                  1px 1px 1px ${theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.2)"},
-                  0.5px 0.5px 1px ${engravedColor},
-                  ${textGlow}
-                `,
+                textShadow: isHovered
+                  ? `
+                      1px 1px 1px ${theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.2)"},
+                      0.5px 0.5px 1px ${engravedColor},
+                      ${textGlow}
+                    `
+                  : `
+                      1px 1px 1px ${theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.2)"},
+                      0.5px 0.5px 1px ${engravedColor}
+                    `,
                 margin: 0,
                 opacity: isHovered ? 1 : 0.9,
                 transition: "opacity 0.5s ease, color 0.5s ease, text-shadow 0.5s ease, transform 0.5s ease",
