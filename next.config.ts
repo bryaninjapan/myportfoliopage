@@ -1,10 +1,14 @@
 import type { NextConfig } from "next";
 
-const isProd = process.env.NODE_ENV === "production";
+// Check if we're building for GitHub Pages
+const isGitHubPages = process.env.GITHUB_PAGES === "true";
 
 const nextConfig: NextConfig = {
   output: "export",
-  basePath: isProd ? "/myportfoliopage" : "",
+  // Set basePath for GitHub Pages (repository name is "myportfoliopage")
+  basePath: isGitHubPages ? "/myportfoliopage" : "",
+  // Ensure static export works correctly
+  trailingSlash: true,
   images: {
     unoptimized: true,
   },

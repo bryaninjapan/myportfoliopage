@@ -1,405 +1,200 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { ArrowUpRight, Github, Linkedin, Mail, Twitter } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
+import { Diskette } from "@/components/ui/Diskette";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { LanguageToggle } from "@/components/ui/LanguageToggle";
+import { projects } from "@/lib/projects";
+import { translations, type Language } from "@/lib/translations";
 
 export default function Home() {
-  const [activeSection, setActiveSection] = useState("done");
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
+  const [language, setLanguage] = useState<Language>("en");
+  const [category, setCategory] = useState<string>("all");
 
+  // Load theme and language from localStorage on mount
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = ["done", "thought", "working"];
-      const scrollPosition = window.scrollY + 300;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (
-            scrollPosition >= offsetTop &&
-            scrollPosition < offsetTop + offsetHeight
-          ) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
+    const savedLanguage = localStorage.getItem("language") as Language | null;
+    
+    if (savedTheme) {
+      setTheme(savedTheme);
+      document.documentElement.classList.toggle("dark", savedTheme === "dark");
+    } else {
+      // Default to dark theme
+      document.documentElement.classList.add("dark");
+    }
+    
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    }
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const offset = 100;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
+  // Apply theme class to document
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
     }
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  // Save language preference
+  useEffect(() => {
+    localStorage.setItem("language", language);
+  }, [language]);
+
+  const handleThemeToggle = () => {
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
 
+  const handleLanguageToggle = () => {
+    setLanguage((prev) => (prev === "zh" ? "en" : "zh"));
+  };
+
+  const t = translations[language];
+
+  // Filter projects by category
+  const filteredProjects =
+    category === "all"
+      ? projects
+      : projects.filter((p) => p.category === category);
+
+  // Ensure even distribution for small number of projects
+  const projectCount = filteredProjects.length;
+
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50 font-sans selection:bg-zinc-900 selection:text-zinc-50">
-      
-      {/* Floating Navigation */}
-      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
-        <nav className="flex items-center gap-1 p-1.5 rounded-full bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl border border-zinc-200 dark:border-zinc-800 shadow-2xl shadow-zinc-200/50 dark:shadow-black/50">
-          {[
-            { id: "done", label: "Done" },
-            { id: "thought", label: "Think" },
-            { id: "working", label: "Work" },
-          ].map((item) => (
-            <button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className={`relative px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
-                activeSection === item.id
-                  ? "text-white"
-                  : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200"
-              }`}
+    <div
+      className={`min-h-screen ${
+        theme === "dark"
+          ? "bg-[#0a0a0a] text-[#f4f4f4]"
+          : "bg-[#f4f4f4] text-[#1a1a1a]"
+      }`}
+      style={{ fontFamily: "'Courier New', 'Monaco', monospace" }}
+    >
+      {/* Header with controls */}
+      <header className="sticky top-0 z-50 border-b backdrop-blur-sm bg-opacity-90"
+        style={{
+          borderColor: theme === "dark" ? "#333" : "#ddd",
+          backgroundColor: theme === "dark" ? "rgba(10, 10, 10, 0.9)" : "rgba(244, 244, 244, 0.9)"
+        }}
+      >
+        <div className="max-w-1400px mx-auto px-6 py-4 flex justify-between items-center">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-widest letter-spacing-0.2em">
+            {t.siteTitle}
+          </h1>
+          
+          <div className="flex gap-3 items-center">
+            <LanguageToggle language={language} onToggle={handleLanguageToggle} />
+            <ThemeToggle theme={theme} onToggle={handleThemeToggle} language={language} />
+          </div>
+        </div>
+
+        {/* Category filter */}
+        <div className="max-w-1400px mx-auto px-6 pb-4 flex justify-center gap-2">
+          <button
+            onClick={() => setCategory("all")}
+            className={`px-4 py-2 rounded-full text-sm font-mono transition-all ${
+              category === "all"
+                ? theme === "dark"
+                  ? "bg-[#f4f4f4] text-[#0a0a0a]"
+                  : "bg-[#0a0a0a] text-[#f4f4f4]"
+                : theme === "dark"
+                ? "border border-[#444] text-[#888] hover:text-[#f4f4f4]"
+                : "border border-[#888] text-[#666] hover:text-[#1a1a1a]"
+            }`}
+          >
+            {t.categories.all}
+          </button>
+          <button
+            onClick={() => setCategory("tools")}
+            className={`px-4 py-2 rounded-full text-sm font-mono transition-all ${
+              category === "tools"
+                ? theme === "dark"
+                  ? "bg-[#f4f4f4] text-[#0a0a0a]"
+                  : "bg-[#0a0a0a] text-[#f4f4f4]"
+                : theme === "dark"
+                ? "border border-[#444] text-[#888] hover:text-[#f4f4f4]"
+                : "border border-[#888] text-[#666] hover:text-[#1a1a1a]"
+            }`}
+          >
+            {t.categories.tools}
+          </button>
+          <button
+            onClick={() => setCategory("archive")}
+            className={`px-4 py-2 rounded-full text-sm font-mono transition-all ${
+              category === "archive"
+                ? theme === "dark"
+                  ? "bg-[#f4f4f4] text-[#0a0a0a]"
+                  : "bg-[#0a0a0a] text-[#f4f4f4]"
+                : theme === "dark"
+                ? "border border-[#444] text-[#888] hover:text-[#f4f4f4]"
+                : "border border-[#888] text-[#666] hover:text-[#1a1a1a]"
+            }`}
+          >
+            {t.categories.archive}
+          </button>
+        </div>
+      </header>
+
+      {/* Main content - Diskette Gallery */}
+      <main className="container mx-auto px-6 py-12 min-h-[60vh]">
+        <div
+          className={`diskette-gallery ${
+            projectCount === 1
+              ? "centered-1"
+              : projectCount === 2
+              ? "centered-2"
+              : projectCount === 3
+              ? "centered-3"
+              : projectCount === 4
+              ? "centered-4"
+              : "auto-fit"
+          }`}
+          style={{
+            // Adjust max-width for better spacing with few projects
+            maxWidth: projectCount <= 4 ? "900px" : "1400px",
+            // Add more vertical padding for few projects
+            paddingTop: projectCount <= 4 ? "4rem" : "2rem",
+            paddingBottom: projectCount <= 4 ? "4rem" : "2rem"
+          }}
+        >
+          {filteredProjects.map((project) => (
+            <div
+              key={project.id}
+              style={{
+                opacity: 1,
+                transition: "opacity 0.3s ease"
+              }}
             >
-              {activeSection === item.id && (
-                <motion.div
-                  layoutId="activeTab"
-                  className="absolute inset-0 bg-zinc-900 dark:bg-zinc-50 rounded-full"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                />
-              )}
-              <span className="relative z-10">
-                {item.label}
-              </span>
-            </button>
+              <Diskette
+                project={project}
+                language={language}
+                theme={theme}
+              />
+            </div>
           ))}
-        </nav>
-      </div>
+        </div>
 
-      <main className="max-w-[1200px] mx-auto px-6 sm:px-12 pt-24 pb-40">
-        
-        {/* Header / Intro */}
-        <header className="mb-32">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-2xl"
-          >
-            <h1 className="text-4xl sm:text-6xl font-bold tracking-tight mb-8 leading-[1.1]">
-              Building tools today for better tomorrow.
-            </h1>
-            <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed mb-8 max-w-lg">
-              Developer and investor focused on legal tech and trading tools. 
-              4-5 years of experience building AI-powered solutions and exploring market patterns.
+        {/* Empty state */}
+        {filteredProjects.length === 0 && (
+          <div className="text-center py-20">
+            <p className="text-lg opacity-60 font-mono">
+              {language === "zh" ? "暂无项目" : "No projects found"}
             </p>
-            <div className="flex gap-4">
-              <Button variant="outline" size="icon" className="rounded-full" asChild>
-                <a href="https://github.com/bryaninjapan" target="_blank" rel="noopener noreferrer">
-                  <Github className="w-4 h-4" />
-                </a>
-              </Button>
-              <Button variant="outline" size="icon" className="rounded-full" asChild>
-                <a href="https://www.linkedin.com/in/boon-kie-goh-11941296/" target="_blank" rel="noopener noreferrer">
-                  <Linkedin className="w-4 h-4" />
-                </a>
-              </Button>
-              <Button variant="outline" size="icon" className="rounded-full">
-                <Twitter className="w-4 h-4" />
-              </Button>
-              <Button variant="outline" size="icon" className="rounded-full">
-                <Mail className="w-4 h-4" />
-              </Button>
-            </div>
-          </motion.div>
-        </header>
-
-        {/* Section 1: What Have I Done (Bento Grid) */}
-        <section id="done" className="mb-40 scroll-mt-24">
-          <motion.h2 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-12 flex items-center gap-4"
-          >
-            <span className="w-8 h-[1px] bg-zinc-400"></span>
-            Milestones & Impact
-          </motion.h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[200px]">
-            {/* Stat: Projects */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-zinc-100 dark:bg-zinc-800 p-8 rounded-3xl flex flex-col justify-between"
-            >
-              <span className="text-zinc-500 dark:text-zinc-400 text-sm font-medium">Projects</span>
-              <div>
-                <span className="text-6xl font-bold tracking-tighter">5</span>
-                <span className="text-xl ml-2 text-zinc-400">Built</span>
-              </div>
-            </motion.div>
-
-             {/* BitQuant Project */}
-             <motion.a
-              href="https://bryaninjapan.github.io/Bitquant/"
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="bg-zinc-900 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-900 border border-zinc-900 dark:border-zinc-50 p-8 rounded-3xl flex flex-col justify-between group cursor-pointer hover:scale-[1.02] transition-transform duration-300"
-            >
-              <div>
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-xl font-bold">BitQuant AI</h3>
-                  <ArrowUpRight className="w-5 h-5 opacity-70 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                </div>
-                <p className="text-zinc-400 dark:text-zinc-600 text-sm mb-4">Risk assessment model for day traders.</p>
-              </div>
-              <div>
-                <Badge variant="outline" className="mb-3 border-zinc-700 text-zinc-400 dark:border-zinc-300 dark:text-zinc-600 font-normal">
-                  Live Tool
-                </Badge>
-                <p className="text-[10px] text-zinc-500 dark:text-zinc-400 leading-tight">
-                  *Disclaimer: This tool is for informational purposes only and does not constitute financial advice.
-                </p>
-              </div>
-            </motion.a>
-
-            {/* English Editor Project */}
-            <motion.a
-              href="https://main.englisheditor.pages.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-              className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 rounded-3xl flex flex-col justify-between group cursor-pointer hover:scale-[1.02] transition-transform duration-300"
-            >
-              <div>
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-xl font-bold">English Editor</h3>
-                  <ArrowUpRight className="w-5 h-5 opacity-70 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                </div>
-                <p className="text-zinc-600 dark:text-zinc-400 text-sm mb-4">Professional English editing tool powered by multiple LLM models.</p>
-              </div>
-              <div>
-                <Badge variant="outline" className="mb-3 border-zinc-300 text-zinc-600 dark:border-zinc-700 dark:text-zinc-400 font-normal">
-                  Live Tool
-                </Badge>
-                <p className="text-[10px] text-zinc-500 dark:text-zinc-400 leading-tight">
-                  Professional English editing tool powered by multiple LLM models (Gemini, GPT-4o, etc.)
-                </p>
-              </div>
-            </motion.a>
-
-            {/* JP Legal Translator Project */}
-            <motion.a
-              href="https://bryaninjapan.github.io/jp-translator/"
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 rounded-3xl flex flex-col justify-between group cursor-pointer hover:scale-[1.02] transition-transform duration-300"
-            >
-              <div>
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-xl font-bold">JP Legal Translator</h3>
-                  <ArrowUpRight className="w-5 h-5 opacity-70 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                </div>
-                <p className="text-zinc-600 dark:text-zinc-400 text-sm mb-4">Professional full-text interpretation tool for Japanese legal documents.</p>
-              </div>
-              <div>
-                <Badge variant="outline" className="mb-3 border-zinc-300 text-zinc-600 dark:border-zinc-700 dark:text-zinc-400 font-normal">
-                  Live Tool
-                </Badge>
-              </div>
-            </motion.a>
-
-            {/* EN Translator Project */}
-            <motion.a
-              href="https://en-translator.pages.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5 }}
-              className="bg-zinc-900 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-900 border border-zinc-900 dark:border-zinc-50 p-8 rounded-3xl flex flex-col justify-between group cursor-pointer hover:scale-[1.02] transition-transform duration-300"
-            >
-              <div>
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-xl font-bold">EN Translator</h3>
-                  <ArrowUpRight className="w-5 h-5 opacity-70 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                </div>
-                <p className="text-zinc-400 dark:text-zinc-600 text-sm mb-4">Professional English to Chinese translation tool for legal and business documents.</p>
-              </div>
-              <div>
-                <Badge variant="outline" className="mb-3 border-zinc-700 text-zinc-400 dark:border-zinc-300 dark:text-zinc-600 font-normal">
-                  Live Tool
-                </Badge>
-              </div>
-            </motion.a>
           </div>
-        </section>
-
-        {/* Section 2: What Did I Think (Editorial) */}
-        <section id="thought" className="mb-40 scroll-mt-24">
-           <motion.h2 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-12 flex items-center gap-4"
-          >
-            <span className="w-8 h-[1px] bg-zinc-400"></span>
-            Philosophy & Thesis
-          </motion.h2>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            <div className="lg:col-span-4">
-              <div className="sticky top-32">
-                <span className="text-9xl font-serif text-zinc-100 dark:text-zinc-900 absolute -top-10 -left-10 -z-10 select-none">“</span>
-                <h3 className="text-3xl font-serif leading-tight mb-6">
-                  The best tools solve real problems for real people.
-                </h3>
-                <p className="text-zinc-500 dark:text-zinc-400 text-sm">
-                  Thoughts on building practical solutions in legal tech and trading, based on 4-5 years of hands-on experience.
-                </p>
-              </div>
-            </div>
-
-            <div className="lg:col-span-8">
-              <article className="prose prose-lg dark:prose-invert prose-zinc max-w-none">
-                <p className="lead text-xl text-zinc-600 dark:text-zinc-300">
-                  Over the past few years, I've learned that <strong className="text-zinc-900 dark:text-zinc-50">building tools that solve real problems is more valuable than chasing trends</strong>. 
-                  Whether it's legal tech or trading tools, the focus should be on practical value.
-                </p>
-                <p>
-                  Each project I've built taught me something new. Working in legal and trading domains showed me 
-                  how AI can augment human expertise rather than replace it. The key is understanding the domain 
-                  deeply before building solutions.
-                </p>
-                
-                <blockquote className="border-l-2 border-zinc-900 dark:border-zinc-50 pl-6 italic text-2xl font-serif my-12 text-zinc-800 dark:text-zinc-200 bg-zinc-50 dark:bg-zinc-900 py-4 pr-4">
-                  "The best tools aren't the most complex ones. They're the ones that solve a specific problem 
-                  really well for people who need it."
-                </blockquote>
-
-                <h4 className="font-sans text-lg font-bold uppercase tracking-wide mt-12 mb-4">Domain Knowledge First</h4>
-                <p>
-                  Before building tools for legal or trading, I spend time understanding the domain. 
-                  The best solutions come from understanding the problems deeply, not from applying technology blindly.
-                </p>
-                <p>
-                  For trading tools, risk assessment is crucial. For legal tools, accuracy and reliability matter most. 
-                  Each domain has its own requirements that can't be ignored.
-                </p>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        {/* Section 3: What Am I Working On (Project Cards) */}
-        <section id="working" className="scroll-mt-24">
-          <motion.h2 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-12 flex items-center gap-4"
-          >
-            <span className="w-8 h-[1px] bg-zinc-400"></span>
-            Current Focus
-          </motion.h2>
-
-          <div className="space-y-32">
-            {[
-              {
-                title: "JP Legal Translator",
-                status: "Live",
-                desc: "Professional full-text interpretation tool for Japanese legal documents. Helping legal professionals translate and understand Japanese legal texts.",
-                color: "bg-indigo-500",
-                number: "01",
-                link: "https://bryaninjapan.github.io/jp-translator/"
-              },
-              {
-                title: "Trading Risk Models",
-                status: "Learning",
-                desc: "Deepening my understanding of risk assessment for day trading. Building tools to help traders make better decisions.",
-                color: "bg-blue-500",
-                number: "02"
-              },
-              {
-                title: "EN Translator",
-                status: "Live",
-                desc: "Professional English to Chinese translation tool. Designed for legal and business professionals who need accurate, context-aware translations.",
-                color: "bg-purple-500",
-                number: "03",
-                link: "https://en-translator.pages.dev"
-              }
-            ].map((project, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8 }}
-                className="group grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-              >
-                <div className={`order-2 ${index % 2 === 1 ? 'lg:order-1' : 'lg:order-2'}`}>
-                  <div className="relative aspect-[4/3] bg-zinc-100 dark:bg-zinc-900 rounded-3xl overflow-hidden">
-                    <div className={`absolute inset-0 opacity-10 ${project.color}`} />
-                    <div className="absolute inset-0 flex items-center justify-center text-9xl font-bold text-zinc-200 dark:text-zinc-800 select-none">
-                      {project.number}
-                    </div>
-                  </div>
-                </div>
-                
-                <div className={`order-1 ${index % 2 === 1 ? 'lg:order-2' : 'lg:order-1'}`}>
-                  <div className="flex items-center gap-3 mb-6">
-                    <span className="w-2 h-2 rounded-full bg-zinc-900 dark:bg-zinc-50 animate-pulse" />
-                    <Badge variant="secondary" className="rounded-full px-4 font-normal bg-zinc-100 dark:bg-zinc-800">
-                      {project.status}
-                    </Badge>
-                  </div>
-                  <h3 className="text-4xl font-bold mb-6 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8 leading-relaxed">
-                    {project.desc}
-                  </p>
-                  {project.link ? (
-                    <Button variant="link" className="p-0 text-lg font-medium hover:no-underline group/btn" asChild>
-                      <a href={project.link} target="_blank" rel="noopener noreferrer">
-                        Visit project <ArrowUpRight className="w-5 h-5 ml-2 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
-                      </a>
-                    </Button>
-                  ) : (
-                    <Button variant="link" className="p-0 text-lg font-medium hover:no-underline group/btn">
-                      Learn more <ArrowUpRight className="w-5 h-5 ml-2 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
-                    </Button>
-                  )}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
+        )}
       </main>
-      
-      <footer className="py-12 text-center text-sm text-zinc-400 dark:text-zinc-600">
-        <p>© {new Date().getFullYear()} Design & Built with Next.js</p>
+
+      {/* Footer */}
+      <footer
+        className="py-8 text-center text-sm opacity-60 font-mono border-t"
+        style={{
+          borderColor: theme === "dark" ? "#333" : "#ddd"
+        }}
+      >
+        <p>© {new Date().getFullYear()}</p>
       </footer>
     </div>
   );
