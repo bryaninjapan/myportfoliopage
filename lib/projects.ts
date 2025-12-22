@@ -26,7 +26,7 @@ export const projects: Project[] = [
     },
     link: "https://bryaninjapan.github.io/Bitquant/",
     category: "tools",
-    year: 2024
+    year: 2025
   },
   {
     id: "english-editor",
@@ -40,7 +40,7 @@ export const projects: Project[] = [
     },
     link: "https://main.englisheditor.pages.dev",
     category: "tools",
-    year: 2024
+    year: 2025
   },
   {
     id: "jp-legal-translator",
@@ -54,7 +54,7 @@ export const projects: Project[] = [
     },
     link: "https://bryaninjapan.github.io/jp-translator/",
     category: "tools",
-    year: 2024
+    year: 2025
   },
   {
     id: "en-translator",
@@ -68,7 +68,7 @@ export const projects: Project[] = [
     },
     link: "https://en-translator.pages.dev",
     category: "tools",
-    year: 2024
+    year: 2025
   }
 ];
 

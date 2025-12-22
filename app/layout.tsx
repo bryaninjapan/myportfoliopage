@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cinzel, IM_Fell_English } from "next/font/google";
+import { Cinzel, IM_Fell_English, Uncial_Antiqua } from "next/font/google";
 import "./globals.css";
 
 const cinzel = Cinzel({
@@ -10,6 +10,12 @@ const cinzel = Cinzel({
 
 const imFellEnglish = IM_Fell_English({
   variable: "--font-medieval",
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
+const uncialAntiqua = Uncial_Antiqua({
+  variable: "--font-rune",
   subsets: ["latin"],
   weight: ["400"],
 });
@@ -27,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${cinzel.variable} ${imFellEnglish.variable} antialiased`}
+        className={`${cinzel.variable} ${imFellEnglish.variable} ${uncialAntiqua.variable} antialiased`}
       >
         {children}
       </body>

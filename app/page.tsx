@@ -157,7 +157,7 @@ export default function Home() {
           }`}
           style={{
             // Adjust max-width for better spacing with few projects
-            maxWidth: projectCount <= 4 ? "1200px" : "1600px",
+            maxWidth: projectCount <= 4 ? "1300px" : "1700px",
             // Add more vertical padding for few projects
             paddingTop: projectCount <= 4 ? "4rem" : "2rem",
             paddingBottom: projectCount <= 4 ? "4rem" : "2rem"
